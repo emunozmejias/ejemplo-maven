@@ -45,8 +45,10 @@ pipeline {
         }
         stage('Paso 4: Análisis SonarQube') {
             steps {
-                withSonarQubeEnv('sonarqube') {      
-                    env.STAGE='Paso 4: Análisis SonarQube'          
+                script {
+                env.STAGE='Paso 4: Análisis SonarQube'    
+                }
+                withSonarQubeEnv('sonarqube') {                
                     sh "echo 'Calling sonar Service in another docker container!'"
                     // Run Maven on a Unix agent to execute Sonar.
                     sh './mvnw clean verify sonar:sonar -Dsonar.projectKey=custom-project-key'

@@ -55,6 +55,14 @@ pipeline {
                 }
             }
         }
+
+        stage("Paso 3.5: Test con Newman"){
+            steps {
+                script{
+                    sh "newman run ejemplo-maven.postman_collection.json"
+                }
+            }
+        }
         
         stage("Paso 4: Detener Spring Boot"){
             steps {
@@ -67,6 +75,7 @@ pipeline {
                 }
             }
         }
+        /*
            stage("Paso 5: Subir Artefacto a Nexus"){
             steps {
                 script{
@@ -121,6 +130,7 @@ pipeline {
                 '''
             }
         }
+        */
         
     }
 }
